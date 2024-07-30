@@ -1,11 +1,15 @@
 #include <stdio.h>
-void printSelf() {
-    char *program = "#include <stdio.h>%cvoid printSelf() {%c    char *program = %c%s%c;%c    printf(program, 10, 10, 34, program, 34, 10, 10, 10, 10, 10, 10, 10, 10, 10);%c}%c/* This is a comment outside the main function */%cint main() {%c    /* This is a comment inside the main function */%c    printSelf();%c    return 0;%c}%c";
-    printf(program, 10, 10, 34, program, 34, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+
+/* Comment 1 */
+
+void print() {
+	char* s = "#include <stdio.h>%c%c/* Comment 1 */%c%cvoid print() {%c%cchar *c = %c%s%c;%c%c%cprintf(s, 10, 10, 10, 10, 9, 34, s, 34, 10, 10, 9, 10, 10, 10, 10, 9, 10, 9, 10, 9, 10);%c}%c%cint main() {%c%c/* Call print() */%c%cprint();%c%creturn (0);%c}";
+	
+	printf(s, 10, 10, 10, 10, 10, 9, 34, s, 34, 10, 10, 9, 10, 10, 10, 10, 9, 10, 9, 10, 9, 10);
 }
-/* This is a comment outside the main function */
+
 int main() {
-    /* This is a comment inside the main function */
-    printSelf();
-    return 0;
+	/* Call print() */
+	print();
+	return (0);
 }
