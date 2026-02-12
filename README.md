@@ -62,18 +62,17 @@ Recode three different programs, each with different properties. Each program wi
 
 ## Explanation
 
-#### C
-
-#### ASM
+#### ASM Colleen
 
 - `section .data` - The `.data` section will exist within the **data** segment and contain data such as initialized **global variables**.
 - `section .text` - Code section that contains program code instructions.
 
 - `rbp` - stack base pointer (`r` is for x64)
 - `rsp` - stack pointer
-- `rdi` - destination index
-- `rsi` - source index
-- `rcx` - loop counter
+- `rdi` - destination index | first argument
+- `rsi` - source index | second argument
+- `rdi` - I/O data | third argument
+- `rcx` - loop counter | fourth argument
 - `rax` - return value
 
 - `fmt` - A label – a symbolic name that the assembler (and later the linker) can use to refer to the address of the bytes that follow.
@@ -86,7 +85,47 @@ Recode three different programs, each with different properties. Each program wi
     - %rsi = name (second argument).
     - %rdx = count (third argument).
   - Check CUTTER -> Decompiler to understand printf
-   
+
+#### ASM Grace
+
+- line 15: `mov rsi, 577` -> `577` is the bitwise `OR` of three flag constants:
+  - `O_WRONLY` (0x001) – open for write‑only.
+  - `O_CREAT` (0x0400) – create the file if it does not exist.
+  - `O_TRUNC` (0x0200) – truncate the file to zero length if it already exists.
+- line 16: `mov rdx, 420` -> `420` is octal `0644`, which translates to the Unix file‑mode bits `rw-r--r--`. This mode is used only when O_CREAT is set
+- line 40: `mov r12, rax` -> save fd to reuse it in M_WRITE macro
+- usage of dprintf to specify the fd (no possible errors)
+  - dprintf(fd, fmt, ...);
+
+#### C Sully
+
+- `int access(const char *pathname, int mode);` checks the calling process’s real user ID/GID permissions for the file named by `pathname`. (`unistd.h` library)
+  - `F_OK` whose value is 0. It tells access to only test for existence of the file; no read/write/execute permission checks are performed.
+- `sprintf(buffer, string, ...)`: write the `string` argument in the `buffer` space
+
+#### ASM Sully
+
+- line 31: `dec r12` - decrement value in r12 (aka 5, 4, 3, 2, 1)
+- line 37: `lea rdi, [rbp-64]` - Load Effective Address -> create buffer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

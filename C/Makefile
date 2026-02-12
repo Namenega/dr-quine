@@ -2,33 +2,33 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME_COLLEEN = Colleen
-#NAME_GRACE = Grace
-#NAME_SULLY = Sully
+NAME_GRACE = Grace
+NAME_SULLY = Sully
 
 SRC_COLLEEN = Colleen.c
-#SRC_GRACE = Grace.c
-#SRC_SULLY = Sully.c
+SRC_GRACE = Grace.c
+SRC_SULLY = Sully.c
 
 OBJ_COLLEEN = $(SRC_COLLEEN:.c=.o)
-#OBJ_GRACE = $(SRC_GRACE:.c=.o)
-#OBJ_SULLY = $(SRC_SULLY:.c=.o)
+OBJ_GRACE = $(SRC_GRACE:.c=.o)
+OBJ_SULLY = $(SRC_SULLY:.c=.o)
 
-all: $(NAME_COLLEEN) #$(NAME_GRACE) $(NAME_SULLY)
+all: $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY)
 
 $(NAME_COLLEEN): $(OBJ_COLLEEN)
 	$(CC) $(CFLAGS) -o $(NAME_COLLEEN) $(OBJ_COLLEEN)
 
-#$(NAME_GRACE): $(OBJ_GRACE)
-#	$(CC) $(CFLAGS) -o $(NAME_GRACE) $(OBJ_GRACE)
+$(NAME_GRACE): $(OBJ_GRACE)
+	$(CC) $(CFLAGS) -o $(NAME_GRACE) $(OBJ_GRACE)
 
-#$(NAME_SULLY): $(OBJ_SULLY)
-#	$(CC) $(CFLAGS) -o $(NAME_SULLY) $(OBJ_SULLY)*/
+$(NAME_SULLY): $(OBJ_SULLY)
+	$(CC) $(CFLAGS) -o $(NAME_SULLY) $(OBJ_SULLY)
 
 clean:
-	rm -f $(OBJ_COLLEEN) # $(OBJ_GRACE) $(OBJ_SULLY)
+	rm -f $(OBJ_COLLEEN) $(OBJ_GRACE) $(OBJ_SULLY)
 
 fclean: clean
-	rm -f $(NAME_COLLEEN) # $(NAME_GRACE) $(NAME_SULLY) Grace_kid.c Sully_*
+	rm -f $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.c Sully_*
 
 re: fclean all
 

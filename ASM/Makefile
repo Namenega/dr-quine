@@ -1,30 +1,30 @@
 NASM = nasm
 NASMFLAGS = -f elf64
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -no-pie
+CFLAGS = -g -Wall -Wextra -Werror -no-pie
 
 NAME_COLLEEN = Colleen
-#NAME_GRACE = Grace
-#NAME_SULLY = Sully
+NAME_GRACE = Grace
+NAME_SULLY = Sully
 
 SRC_COLLEEN = Colleen.s
-#SRC_GRACE = Grace.s
-#SRC_SULLY = Sully.s
+SRC_GRACE = Grace.s
+SRC_SULLY = Sully.s
 
 OBJ_COLLEEN = $(SRC_COLLEEN:.s=.o)
-#OBJ_GRACE = $(SRC_GRACE:.s=.o)
-#OBJ_SULLY = $(SRC_SULLY:.s=.o)
+OBJ_GRACE = $(SRC_GRACE:.s=.o)
+OBJ_SULLY = $(SRC_SULLY:.s=.o)
 
 all: $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY)
 
 $(NAME_COLLEEN): $(OBJ_COLLEEN)
 	$(CC) $(CFLAGS) -o $(NAME_COLLEEN) $(OBJ_COLLEEN)
 
-#$(NAME_GRACE): $(OBJ_GRACE)
-	#$(CC) $(CFLAGS) -o $(NAME_GRACE) $(OBJ_GRACE)
+$(NAME_GRACE): $(OBJ_GRACE)
+	$(CC) $(CFLAGS) -o $(NAME_GRACE) $(OBJ_GRACE)
 
-#$(NAME_SULLY): $(OBJ_SULLY)
-	#$(CC) $(CFLAGS) -o $(NAME_SULLY) $(OBJ_SULLY)
+$(NAME_SULLY): $(OBJ_SULLY)
+	$(CC) $(CFLAGS) -o $(NAME_SULLY) $(OBJ_SULLY)
 
 %.o: %.s
 	$(NASM) $(NASMFLAGS) $< -o $@
